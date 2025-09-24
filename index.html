@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmando sua conta - Disc Loom</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #121212;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #3B82F6; /* Azul vibrante */
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+        .stores {
+            display: none; /* Começa escondido */
+            margin-top: 24px;
+        }
+        .stores a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: 1px solid #3B82F6;
+            border-radius: 8px;
+            color: #3B82F6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .stores a:hover {
+            background-color: #3B82F6;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conta confirmada com sucesso!</h1>
+        <p id="message">Estamos redirecionando você para o aplicativo Disc Loom...</p>
+        <div id="stores" class="stores">
+            <p>Se nada acontecer, baixe ou abra o aplicativo usando os links abaixo:</p>
+            <a href="URL_DA_SUA_PLAY_STORE" target="_blank">Google Play</a>
+            <a href="URL_DA_SUA_APP_STORE" target="_blank">App Store</a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ---> 1. PERSONALIZE SEU DEEP LINK AQUI <---
+            const deepLink = "discloom://auth/callback";
+
+            // Tenta redirecionar para o aplicativo
+            window.location.replace(deepLink);
+
+            // Se, após 1.5 segundos, o usuário ainda estiver nesta página,
+            // significa que ele está no PC ou não tem o app instalado.
+            // Então, mostramos as mensagens de fallback.
+            setTimeout(() => {
+                document.getElementById("message").innerText = "Sua conta está pronta! Agora você pode fazer login no aplicativo.";
+                document.getElementById("stores").style.display = "block";
+            }, 1500);
+        })();
+    </script>
+</body>
+</html>
