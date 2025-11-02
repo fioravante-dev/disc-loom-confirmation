@@ -1,81 +1,368 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmando sua conta - Disc Loom</title>
+    <title>Conta Confirmada - Discloom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0E1A;
+            color: #F9FAFB;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            background-color: #121212;
-            color: #e0e0e0;
-            text-align: center;
+            overflow: hidden;
+            position: relative;
         }
+
+        /* Background Effects */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .bg-circle-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+        }
+
+        .bg-circle-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(20px, -20px) scale(1.05);
+            }
+        }
+
+        /* Container */
         .container {
-            padding: 20px;
+            position: relative;
+            z-index: 10;
+            max-width: 500px;
+            padding: 48px 32px;
+            background: rgba(26, 31, 53, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
         }
-        h1 {
-            font-size: 24px;
-            color: #3B82F6; /* Azul vibrante */
-            margin-bottom: 16px;
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        p {
-            font-size: 16px;
-            line-height: 1.5;
+
+        /* Logo */
+        .logo-section {
             margin-bottom: 32px;
         }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 12px;
+            filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.4));
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Success Icon */
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: checkAppear 0.6s ease-out 0.3s backwards;
+        }
+
+        @keyframes checkAppear {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.2) rotate(10deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .success-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Title */
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #F9FAFB;
+            margin-bottom: 12px;
+            animation: fadeIn 0.6s ease-out 0.4s backwards;
+        }
+
+        /* Message */
+        .message {
+            font-size: 16px;
+            color: #D1D5DB;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            animation: fadeIn 0.6s ease-out 0.5s backwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 24px;
+            border: 3px solid rgba(139, 92, 246, 0.2);
+            border-top-color: #8B5CF6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite, fadeIn 0.6s ease-out 0.6s backwards;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Store Links */
         .stores {
-            display: none; /* Começa escondido */
-            margin-top: 24px;
+            display: none;
+            margin-top: 32px;
+            animation: fadeIn 0.6s ease-out;
         }
-        .stores a {
-            display: inline-block;
-            margin: 0 10px;
-            padding: 10px 20px;
-            border: 1px solid #3B82F6;
-            border-radius: 8px;
-            color: #3B82F6;
+
+        .stores.show {
+            display: block;
+        }
+
+        .stores p {
+            font-size: 14px;
+            color: #9CA3AF;
+            margin-bottom: 20px;
+        }
+
+        .store-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #1F2937;
+            border: 2px solid #374151;
+            border-radius: 12px;
+            color: #F9FAFB;
             text-decoration: none;
+            font-size: 14px;
             font-weight: 600;
-            transition: background-color 0.2s, color 0.2s;
+            transition: all 0.2s ease-out;
         }
-        .stores a:hover {
-            background-color: #3B82F6;
-            color: #ffffff;
+
+        .store-btn:hover {
+            background: #374151;
+            border-color: #8B5CF6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+        }
+
+        .store-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                margin: 20px;
+                padding: 32px 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .store-buttons {
+                flex-direction: column;
+            }
+
+            .store-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Background -->
+    <div class="background">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+    </div>
+
+    <!-- Main Container -->
     <div class="container">
+        <!-- Logo -->
+        <div class="logo-section">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="vinylGradient">
+                            <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#6D28D9;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="48" fill="url(#vinylGradient)" opacity="0.9"/>
+                    <circle cx="50" cy="50" r="44" fill="none" stroke="#1A1F35" stroke-width="0.5" opacity="0.3"/>
+                    <circle cx="50" cy="50" r="18" fill="#1A1F35"/>
+                    <circle cx="50" cy="50" r="6" fill="#0A0E1A"/>
+                    <circle cx="50" cy="50" r="6" fill="none" stroke="#06B6D4" stroke-width="1" opacity="0.6"/>
+                </svg>
+            </div>
+            <div class="brand-name">Discloom</div>
+        </div>
+
+        <!-- Success Icon -->
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+
+        <!-- Title -->
         <h1>Conta confirmada com sucesso!</h1>
-        <p id="message">Estamos redirecionando você para o aplicativo Disc Loom...</p>
-        <div id="stores" class="stores">
+
+        <!-- Message -->
+        <p class="message" id="message">Estamos redirecionando você para o aplicativo Discloom...</p>
+
+        <!-- Loading Spinner -->
+        <div class="spinner" id="spinner"></div>
+
+        <!-- Store Links (hidden initially) -->
+        <div class="stores" id="stores">
             <p>Se nada acontecer, baixe ou abra o aplicativo usando os links abaixo:</p>
-            <a href="URL_DA_SUA_PLAY_STORE" target="_blank">Google Play</a>
-            <a href="URL_DA_SUA_APP_STORE" target="_blank">App Store</a>
+            <div class="store-buttons">
+                <a href="https://play.google.com/store" class="store-btn" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    Google Play
+                </a>
+                <a href="https://apps.apple.com" class="store-btn" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                    </svg>
+                    App Store
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
         (function() {
-            // ---> 1. PERSONALIZE SEU DEEP LINK AQUI <---
+            // ---> PERSONALIZE SEU DEEP LINK AQUI <---
             const deepLink = "discloom://auth/callback";
-
+            
+            // Elementos
+            const messageEl = document.getElementById('message');
+            const spinnerEl = document.getElementById('spinner');
+            const storesEl = document.getElementById('stores');
+            
             // Tenta redirecionar para o aplicativo
             window.location.replace(deepLink);
-
-            // Se, após 1.5 segundos, o usuário ainda estiver nesta página,
-            // significa que ele está no PC ou não tem o app instalado.
-            // Então, mostramos as mensagens de fallback.
+            
+            // Após 1.5 segundos, mostra fallback
             setTimeout(() => {
-                document.getElementById("message").innerText = "Sua conta está pronta! Agora você pode fazer login no aplicativo.";
-                document.getElementById("stores").style.display = "block";
+                // Esconde spinner
+                spinnerEl.style.display = 'none';
+                
+                // Atualiza mensagem
+                messageEl.textContent = 'Sua conta está pronta! Agora você pode fazer login no aplicativo.';
+                
+                // Mostra links das stores
+                storesEl.classList.add('show');
             }, 1500);
         })();
     </script>
